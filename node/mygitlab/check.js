@@ -287,9 +287,14 @@ const updateUserWorklog = (month) => {
 	});
 };
 
+const updateOne = (month) => {
+	console.log(month);
+};
+
 module.exports={      
     exportAll : exportAll,      
-    updateAll : updateUserWorklog
+    updateAll : updateUserWorklog,
+	updateOne : updateUserWorklog
 } 
 //exportAll();
 // updateUserWorklog('201705');
