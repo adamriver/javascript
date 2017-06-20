@@ -1,3 +1,8 @@
 .project
 logs/
 node_modules/
+other/
+input/
+stock/
+stock1/
+.vscode/

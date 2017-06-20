@@ -1,25 +1,20 @@
 {
-  "name": "robot",
+  "name": "mygitlab",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.20.0",
     "babel-preset-latest": "^6.16.0",
     "babel-register": "^6.18.0",
-    "nightmare": "^2.9.0",
-    "nodemailer": "^2.7.0"
-  },
-  "devDependencies": {
-    "eslint": "^3.12.2",
-    "eslint-config-standard": "^6.2.1",
-    "eslint-plugin-promise": "^3.4.0",
-    "eslint-plugin-standard": "^2.0.1"
+    "gitlab": "^1.7.1",
+    "lowdb": "^0.14.0",
+    "mysql": "^2.12.0",
+    "node-xlsx": "^0.7.4"
   }
 }

@@ -1,3 +1,4 @@
 require('babel-register');
 require('babel-polyfill');
-require('./run');
+var aa = require('./check');
+aa.exportAll();

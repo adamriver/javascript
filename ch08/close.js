@@ -47,7 +47,7 @@ function funPrint(i) {
 	console.log('print self '+i);
 	return function(x){
 		console.log('print ' + x + ' times');
-	}    
+	}
 }
 
 var ap = funPrint('ap');

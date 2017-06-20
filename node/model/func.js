@@ -17,6 +17,6 @@ function one(f) {
 };
 
 module.exports={      
-    func2 : one(fun2),      
-    func3 : one(fun3) 
+    func2 : fun2,      
+    func3 : fun3 
 } 
