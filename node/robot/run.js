@@ -41,29 +41,29 @@ const run = async() => {
         console.log('登录成功');
     } catch (e) {
         await nm.end();
-        console.log('登录失败');
+        console.log('登录失败'+JSON.stringify(e));
         return;
         // email.sendMail('[recruit robot]: 登录失败')
     }
 
     // 登陆成功后，访问每个git项目，看状态是否正常config.gits.length
-    try {
-        for (let i = 0; i < config.gits.length; i++) {
-            let git = config.gits[i];
-            await checkGit(git);
-        }
-    } catch (e) {
-        await nm.end();
-        console.log(e);
-        return;
-    }
+    // try {
+    //     for (let i = 0; i < config.gits.length; i++) {
+    //         let git = config.gits[i];
+    //         await checkGit(git);
+    //     }
+    // } catch (e) {
+    //     await nm.end();
+    //     console.log(e);
+    //     return;
+    // }
 
-    await nm.end();
-    // 查看各个项目的完成情况后，将情况输出成
-    printGit();
+    // await nm.end();
+    // // 查看各个项目的完成情况后，将情况输出成
+    // printGit();
 };
 
-const login = async() => {
+const login1 = async() => {
     await nm.goto(config.gitlabUrl + '/users/sign_in');
     // await nightmare.wait('#user_login');
     await nm.type('#user_login', config.username);
@@ -71,6 +71,11 @@ const login = async() => {
     console.log('成功填写用户和密码');
     await nm.click('input[name="commit"]');
     await nm.wait('#logo');
+    console.log('成功登陆');
+};
+
+const login = async() => {
+    await nm.goto('https://lpn.boco.com.cn');
     console.log('成功登陆');
 };
 

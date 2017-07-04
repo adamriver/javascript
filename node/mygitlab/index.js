@@ -4,7 +4,7 @@ var check = require('./check');
 
 function main() {
 	var stream = null;
-	var month = '201706';
+	var month = 'bug详细列表';
 	var paramArgus = process.argv.splice(2);
 	if(!paramArgus || paramArgus.length == 0) {
 		stream = 'exportAll';
@@ -17,7 +17,8 @@ function main() {
 	if (stream === 'exportAll'){
 		check.exportAll();
 	}else{
-		check.updateAll(month);
+		console.log(month);
+		check.exportSingle(month);
 	}
 }
 

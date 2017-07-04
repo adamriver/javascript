@@ -99,6 +99,37 @@ END
      (select realname from zt_user where account=zt_bug.resolvedBy)   as 处理人,
      source
      from zt_bug`,
+        'bug详细列表': `select id as 问题编号,
+     (select name from zt_product where id=zt_bug.product) as 所属产品 ,
+     (CASE
+WHEN status='active'
+THEN '激活'
+WHEN status='resolved'
+THEN '解决'
+WHEN status='closed'
+THEN '已关闭'
+ELSE '未知'
+END
+) AS 状态,
+     (select (select name from zt_product where id=zt_module.root) from zt_module where id=zt_bug.module) as 所属模块,
+     (select name from zt_branch where product =zt_bug.product and id=zt_bug.branch) as 所属分支,
+     (select name from zt_project where id=zt_bug.project) as 所属省份 ,
+     title as bug名称,
+     type as bug类型,
+     source as bug来源,
+     (select realname from zt_user where account=zt_bug.rdresponser)   as 研发责任人,
+     (select realname from zt_user where account=zt_bug.testresponser)   as 测试责任人,
+     (select realname from zt_user where account=zt_bug.reqresponser)   as 需求责任人,
+     (select realname from zt_user where account=zt_bug.openedBy)   as 创建人,
+     openedDate as 创建时间,
+     (SELECT (select realname from zt_user where account=zt_action.actor) FROM zt_action where objectid =zt_bug.id and action = 'bugconfirmed' limit 1)   as 确认人,
+     (SELECT date FROM zt_action where objectid =zt_bug.id and action = 'bugconfirmed' limit 1)   as 确认时间,
+     confirmed as 是否确认,
+     (select realname from zt_user where account=zt_bug.resolvedBy)   as 解决人,
+     resolvedDate as 解决时间,
+     closedDate as 关闭时间,
+     deleted as 是否删除
+     from zt_bug where openedDate > '2016-12-25' and deleted = '0'`,
         '人员': 'select * from  bi_report_amb_accountbymonth'
     },
     db2: {
@@ -121,7 +152,20 @@ END
         a.TASK_ID AS 任务编号,
         a.work_time as 报工时长,
         'BUG' AS 报工类型
-         from dw_worklog a, dw_user b where a.task_type=3 and a.work_date >'2016-12-25' and b.id=a.user_id and b.dep_id = 'zh' `
+         from dw_worklog a, dw_user b where a.task_type=3 and a.work_date >'2016-12-25' and b.id=a.user_id and b.dep_id = 'zh' 
+        union all
+        select a.work_date as 报工时间,
+        b.username as 报工人,
+        a.TASK_ID AS 任务编号,
+        a.work_time as 报工时长,
+        'BUG2' AS 报工类型
+         from dw_worklog a, dw_user b where a.task_type=21 and a.work_date >'2016-12-25' and b.id=a.user_id and b.dep_id = 'zh' `,
+        'bug2列表': `select sheet_id as bug编号,
+     province_name as 所属省份 ,
+     title as bug名称, 
+     'province' as source 
+     from it_task2zt where task_type = 21  `
+
     }
 };
 module.exports = SQLConfig;

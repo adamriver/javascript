@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "csv": "^1.1.1"
+    "csv": "^1.1.1",
+    "fast-csv": "^2.4.0"
   }
 }

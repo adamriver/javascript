@@ -224,6 +224,7 @@ const changeDBList = (arr) => {
 	return ret;
 };
 
+
 const exportDB = (name, sql) => {
 	myQuery(sql).then((val) => {
 		let arr = changeDBList(val);
@@ -240,6 +241,12 @@ const exportDB2 = (name, sql) => {
 		console.log(name + ':输出完成！');
 	});
 };
+
+const exportSingle = (y) => {
+	console.log(SQLConfig.db[y]);
+	exportDB(y, SQLConfig.db[y]);
+};
+
 const exportAll = () => {
 	let sqlNames = Object.keys(SQLConfig.db);
 	sqlNames.forEach((x) => {
@@ -293,6 +300,7 @@ const updateOne = (month) => {
 
 module.exports={      
     exportAll : exportAll,      
+	exportSingle : exportSingle,
     updateAll : updateUserWorklog,
 	updateOne : updateUserWorklog
 } 
